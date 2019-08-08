@@ -12,6 +12,10 @@ struct PersonInfo: Decodable {
     let id: String
     let firstName: String
     let lastName: String
-    let email: String
-    let phone: String
+    let email: String?
+    let phone: String?
+    
+    func getDisplayName() -> String {
+        return firstName + " " + lastName
+    }
 }

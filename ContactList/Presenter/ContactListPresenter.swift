@@ -21,13 +21,21 @@ class ContactListPresenter {
         self.contactListViewDelegate = contactListViewDelegate
     }
     
+    func personInfoList() {
+        personInfoService.getContactList() { [weak self] personInfos in
+            guard let personInfos = personInfos else {
+                return
+            }
+            self?.contactListViewDelegate?.displayContactList(list: personInfos)
+        }
+    }
+    
     func personInfoSelected(id: String) {
         personInfoService.getPersonInfo(id: id) { [weak self] personInfo in
             guard let personInfo = personInfo else {
                 return
             }
-            print(personInfo.firstName + " " + personInfo.lastName)
-            self?.contactListViewDelegate?.displayContactList()
+            self?.contactListViewDelegate?.displayContactPerson(id: personInfo.id)
         }
     }
 }

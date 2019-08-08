@@ -11,8 +11,15 @@
 		07A2BBB322FBD40900659489 /* PersonInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A2BBB222FBD40900659489 /* PersonInfoService.swift */; };
 		07A2BBB822FBD4E600659489 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 07A2BBB722FBD4E600659489 /* data.json */; };
 		07A2BBBB22FBD6B100659489 /* ContactListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A2BBBA22FBD6B100659489 /* ContactListPresenter.swift */; };
+		07A2BBBE22FBDEE600659489 /* String Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A2BBBD22FBDEE600659489 /* String Extensions.swift */; };
+		07A2BBC122FBE09500659489 /* ContactInfoTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A2BBC022FBE09500659489 /* ContactInfoTableCell.swift */; };
+		07A2BBC322FBE0C200659489 /* TableBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A2BBC222FBE0C200659489 /* TableBaseCell.swift */; };
+		07A2BBC522FBE5D000659489 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A2BBC422FBE5D000659489 /* Constants.swift */; };
+		07A2BBC922FBEE1C00659489 /* ContactFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A2BBC822FBEE1C00659489 /* ContactFormVC.swift */; };
+		07A2BBCB22FBF18800659489 /* ContactAvatarTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A2BBCA22FBF18800659489 /* ContactAvatarTableCell.swift */; };
+		07A2BBCD22FBF4A800659489 /* ContactTextInputTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A2BBCC22FBF4A800659489 /* ContactTextInputTableCell.swift */; };
 		07C9321122FBD23F006DA51E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C9321022FBD23F006DA51E /* AppDelegate.swift */; };
-		07C9321322FBD23F006DA51E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C9321222FBD23F006DA51E /* ViewController.swift */; };
+		07C9321322FBD23F006DA51E /* ContactListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C9321222FBD23F006DA51E /* ContactListVC.swift */; };
 		07C9321622FBD23F006DA51E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07C9321422FBD23F006DA51E /* Main.storyboard */; };
 		07C9321822FBD240006DA51E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07C9321722FBD240006DA51E /* Assets.xcassets */; };
 		07C9321B22FBD240006DA51E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07C9321922FBD240006DA51E /* LaunchScreen.storyboard */; };
@@ -23,9 +30,16 @@
 		07A2BBB222FBD40900659489 /* PersonInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoService.swift; sourceTree = "<group>"; };
 		07A2BBB722FBD4E600659489 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		07A2BBBA22FBD6B100659489 /* ContactListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListPresenter.swift; sourceTree = "<group>"; };
+		07A2BBBD22FBDEE600659489 /* String Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String Extensions.swift"; sourceTree = "<group>"; };
+		07A2BBC022FBE09500659489 /* ContactInfoTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoTableCell.swift; sourceTree = "<group>"; };
+		07A2BBC222FBE0C200659489 /* TableBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableBaseCell.swift; sourceTree = "<group>"; };
+		07A2BBC422FBE5D000659489 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		07A2BBC822FBEE1C00659489 /* ContactFormVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFormVC.swift; sourceTree = "<group>"; };
+		07A2BBCA22FBF18800659489 /* ContactAvatarTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactAvatarTableCell.swift; sourceTree = "<group>"; };
+		07A2BBCC22FBF4A800659489 /* ContactTextInputTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTextInputTableCell.swift; sourceTree = "<group>"; };
 		07C9320D22FBD23F006DA51E /* ContactList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07C9321022FBD23F006DA51E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		07C9321222FBD23F006DA51E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		07C9321222FBD23F006DA51E /* ContactListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListVC.swift; sourceTree = "<group>"; };
 		07C9321522FBD23F006DA51E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		07C9321722FBD240006DA51E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07C9321A22FBD240006DA51E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -75,6 +89,28 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		07A2BBBC22FBDED600659489 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				07A2BBBD22FBDEE600659489 /* String Extensions.swift */,
+				07A2BBC422FBE5D000659489 /* Constants.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		07A2BBBF22FBE03300659489 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				07C9321222FBD23F006DA51E /* ContactListVC.swift */,
+				07A2BBC022FBE09500659489 /* ContactInfoTableCell.swift */,
+				07A2BBC222FBE0C200659489 /* TableBaseCell.swift */,
+				07A2BBC822FBEE1C00659489 /* ContactFormVC.swift */,
+				07A2BBCA22FBF18800659489 /* ContactAvatarTableCell.swift */,
+				07A2BBCC22FBF4A800659489 /* ContactTextInputTableCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		07C9320422FBD23F006DA51E = {
 			isa = PBXGroup;
 			children = (
@@ -94,12 +130,13 @@
 		07C9320F22FBD23F006DA51E /* ContactList */ = {
 			isa = PBXGroup;
 			children = (
+				07A2BBBF22FBE03300659489 /* Views */,
+				07A2BBBC22FBDED600659489 /* Helpers */,
 				07A2BBB922FBD69B00659489 /* Presenter */,
 				07A2BBB422FBD4BE00659489 /* Resources */,
 				07A2BBB122FBD3E600659489 /* Service */,
 				07A2BBAE22FBD37600659489 /* Model */,
 				07C9321022FBD23F006DA51E /* AppDelegate.swift */,
-				07C9321222FBD23F006DA51E /* ViewController.swift */,
 				07C9321422FBD23F006DA51E /* Main.storyboard */,
 				07C9321722FBD240006DA51E /* Assets.xcassets */,
 				07C9321922FBD240006DA51E /* LaunchScreen.storyboard */,
@@ -180,11 +217,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07C9321322FBD23F006DA51E /* ViewController.swift in Sources */,
+				07C9321322FBD23F006DA51E /* ContactListVC.swift in Sources */,
+				07A2BBC322FBE0C200659489 /* TableBaseCell.swift in Sources */,
 				07A2BBB022FBD39100659489 /* PersonInfo.swift in Sources */,
+				07A2BBCD22FBF4A800659489 /* ContactTextInputTableCell.swift in Sources */,
 				07A2BBB322FBD40900659489 /* PersonInfoService.swift in Sources */,
+				07A2BBCB22FBF18800659489 /* ContactAvatarTableCell.swift in Sources */,
 				07C9321122FBD23F006DA51E /* AppDelegate.swift in Sources */,
+				07A2BBC922FBEE1C00659489 /* ContactFormVC.swift in Sources */,
+				07A2BBC122FBE09500659489 /* ContactInfoTableCell.swift in Sources */,
 				07A2BBBB22FBD6B100659489 /* ContactListPresenter.swift in Sources */,
+				07A2BBBE22FBDEE600659489 /* String Extensions.swift in Sources */,
+				07A2BBC522FBE5D000659489 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

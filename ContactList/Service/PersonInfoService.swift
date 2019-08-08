@@ -28,6 +28,12 @@ class PersonInfoService {
         }
     }
     
+    func getContactList(completion: @escaping ([PersonInfo]?) -> Void) {
+        loadJSON { (personInfos) in
+            completion(personInfos)
+        }
+    }
+    
     func getPersonInfo(id: String, completion: @escaping (PersonInfo?) -> Void) {
         loadJSON { (personInfos) in
             for personInfo in personInfos {
