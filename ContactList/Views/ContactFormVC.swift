@@ -21,7 +21,6 @@ class ContactFormVC: UIViewController {
         return table
     }()
     
-    fileprivate var returnKeyHandler: IQKeyboardReturnKeyHandler!
     fileprivate let contactAvatarCellId = "contactAvatarCell"
     fileprivate let contactInputFieldCellId = "contactInputFieldCell"
     fileprivate let contactFormPresenter = ContactFormPresenter(personInfoService: ContactInfoService())
