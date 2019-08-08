@@ -13,7 +13,7 @@ class ContactTextInputTableCell: TableBaseCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.textAlignment = .left
-        label.textColor = "#000000".hexToUIColor()
+        label.textColor = .black
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.adjustsFontForContentSizeCategory = true
@@ -24,7 +24,7 @@ class ContactTextInputTableCell: TableBaseCell {
     fileprivate lazy var inputTextField: UITextField = {
         let tf = UITextField()
         tf.font = UIFont.systemFont(ofSize: 14)
-        tf.textColor = "#000000".hexToUIColor()
+        tf.textColor = .black
         tf.tintColor = accentColor
         tf.clearButtonMode = .whileEditing
         tf.borderStyle = UITextField.BorderStyle.roundedRect

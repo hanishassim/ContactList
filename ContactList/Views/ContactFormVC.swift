@@ -93,8 +93,8 @@ extension ContactFormVC: UITableViewDataSource {
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             
             return cell
-        case 1, 2:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: contactInputFieldCellId, for: indexPath) as? ContactTextInputTableCell, let contactInfo = contactInfo else {
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: contactInputFieldCellId, for: indexPath) as? ContactTextInputTableCell else {
                 return UITableViewCell()
             }
             
@@ -102,13 +102,30 @@ extension ContactFormVC: UITableViewDataSource {
             
             switch row {
             case 0:
-                cell.inputNameText = section == 1 ? "First Name" : "Email"
-                cell.inputText = section == 1 ? contactInfo.firstName : contactInfo.email ?? String()
+                cell.inputNameText = "First Name"
+                cell.inputText = contactInfo?.firstName ?? String()
             case 1:
-                cell.inputNameText = section == 1 ? "Last Name" : "Phone"
-                cell.inputText = section == 1 ? contactInfo.lastName : contactInfo.phone ?? String()
-            default:
-                cell.inputNameText = String()
+                cell.inputNameText = "Last Name"
+                cell.inputText = contactInfo?.lastName ?? String()
+            default: break
+            }
+            
+            return cell
+        case 2:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: contactInputFieldCellId, for: indexPath) as? ContactTextInputTableCell else {
+                return UITableViewCell()
+            }
+            
+            cell.selectionStyle = .none
+            
+            switch row {
+            case 0:
+                cell.inputNameText = "Email"
+                cell.inputText = contactInfo?.email ?? String()
+            case 1:
+                cell.inputNameText = "Phone"
+                cell.inputText = contactInfo?.phone ?? String()
+            default: break
             }
             
             return cell

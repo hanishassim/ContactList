@@ -10,7 +10,6 @@
 import UIKit
 
 class TableBaseCell: UITableViewCell {
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupCell()
@@ -25,5 +24,4 @@ class TableBaseCell: UITableViewCell {
     override class var requiresConstraintBasedLayout: Bool {
         return true
     }
-
 }

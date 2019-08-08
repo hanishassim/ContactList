@@ -23,7 +23,7 @@ class ContactInfoTableCell: TableBaseCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         label.textAlignment = .left
-        label.textColor = "#000000".hexToUIColor()
+        label.textColor = .black
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.adjustsFontForContentSizeCategory = true
@@ -40,6 +40,8 @@ class ContactInfoTableCell: TableBaseCell {
     fileprivate let contactImageViewHeight: CGFloat = 49
     
     override func setupCell() {
+        backgroundColor = .white
+        
         contentView.addSubview(contactImageView)
         
         NSLayoutConstraint.activate([

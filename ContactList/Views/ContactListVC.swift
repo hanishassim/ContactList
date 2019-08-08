@@ -19,6 +19,7 @@ class ContactListVC: UIViewController {
         table.dataSource = self
         table.delegate = self
         table.estimatedRowHeight = 50
+        table.backgroundColor = .white
         table.rowHeight = UITableView.automaticDimension
         table.tableFooterView = UIView(frame: CGRect.zero)
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -30,6 +31,7 @@ class ContactListVC: UIViewController {
     fileprivate var contactList: [PersonInfo]? {
         didSet {
             tableView.reloadData()
+            tableView.refreshControl?.endRefreshing()
         }
     }
     
@@ -41,7 +43,8 @@ class ContactListVC: UIViewController {
         initTableView(tableView: self.tableView)
         
         contactListPresenter.setViewDelegate(contactListViewDelegate: self)
-        contactListPresenter.personInfoList()
+        
+        reloadContactList()
     }
     
     override func viewWillLayoutSubviews() {
@@ -53,6 +56,10 @@ class ContactListVC: UIViewController {
     }
 
     fileprivate func initTableView(tableView: UITableView) {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:  #selector(reloadContactList), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        
         tableView.register(ContactInfoTableCell.self, forCellReuseIdentifier: contactInfoCellId)
         
         view.addSubview(tableView)
@@ -65,17 +72,21 @@ class ContactListVC: UIViewController {
             ])
     }
     
-    @objc func addContactInfo() {
-        
+    @objc func reloadContactList() {
+        contactListPresenter.personInfoList()
     }
     
-    fileprivate func presentContactForm(rowId: Int) {
-        guard let contactList = contactList else {
-            return
+    @objc func addContactInfo() {
+        presentContactForm()
+    }
+    
+    fileprivate func presentContactForm(rowId: Int? = nil) {
+        let vc = ContactFormVC()
+
+        if let contactList = contactList, let row = rowId {
+            vc.contactInfo = contactList[row]
         }
         
-        let vc = ContactFormVC()
-        vc.contactInfo = contactList[rowId]
         let navController = UINavigationController(rootViewController: vc)
         navController.navigationBar.tintColor = accentColor
         present(navController, animated: true, completion: nil)
