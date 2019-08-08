@@ -1,2 +1,2 @@
-# ContactList
-Contact List built with MVP architecture
+# Contact List
+Contact List app built with MVP architecture
