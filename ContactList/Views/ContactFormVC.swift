@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 class ContactFormVC: UIViewController {
     fileprivate lazy var tableView: UITableView! = {
@@ -20,10 +21,11 @@ class ContactFormVC: UIViewController {
         return table
     }()
     
+    fileprivate var returnKeyHandler: IQKeyboardReturnKeyHandler!
     fileprivate let contactAvatarCellId = "contactAvatarCell"
     fileprivate let contactInputFieldCellId = "contactInputFieldCell"
-    fileprivate let contactFormPresenter = ContactFormPresenter(personInfoService: PersonInfoService())
-    fileprivate var contactInfo: PersonInfo? {
+    fileprivate let contactFormPresenter = ContactFormPresenter(personInfoService: ContactInfoService())
+    fileprivate var contactInfo: ContactInfo? {
         didSet {
             tableView.reloadData()
         }
@@ -36,7 +38,7 @@ class ContactFormVC: UIViewController {
 
         initTableView(tableView: self.tableView)
         
-        contactFormPresenter.setViewDelegate(delegate: self)
+        contactFormPresenter.setDelegate(delegate: self)
 
         guard let contactInfoId = contactInfoId else {
             return
@@ -70,6 +72,8 @@ class ContactFormVC: UIViewController {
     }
     
     @objc func cancelAction() {
+        view.endEditing(true)
+        
         navigationController?.dismiss(animated: true, completion: nil)
     }
     
@@ -91,7 +95,7 @@ class ContactFormVC: UIViewController {
         let emailCell = fetchInputCell(indexPath: IndexPath(row: 0, section: 2))
         let phoneCell = fetchInputCell(indexPath: IndexPath(row: 1, section: 2))
         
-        let newContact = PersonInfo(id: contactInfoId ?? RandomCodeGenerator().randomString(), firstName: firstName, lastName: lastName, email: emailCell?.inputText, phone: phoneCell?.inputText)
+        let newContact = ContactInfo(id: contactInfoId ?? RandomCodeGenerator().randomString(), firstName: firstName, lastName: lastName, email: emailCell?.inputText, phone: phoneCell?.inputText)
         
         contactFormPresenter.storePersonInfo(contactInfo: newContact)
     }
@@ -106,8 +110,10 @@ extension ContactFormVC: UITableViewDataSource {
         switch section {
         case 0:
             return 1
-        case 1, 2:
+        case 1:
             return 2
+        case 2:
+            return 3
         default:
             return 0
         }
@@ -127,38 +133,36 @@ extension ContactFormVC: UITableViewDataSource {
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             
             return cell
-        case 1:
+        case 1, 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: contactInputFieldCellId, for: indexPath) as? ContactTextInputTableCell else {
                 return UITableViewCell()
             }
             
-            cell.selectionStyle = .none
+            cell.inputTextFieldDelegate = self
+            cell.inputTextFieldTag = row + section
             
-            switch row {
-            case 0:
-                cell.inputNameText = "First Name"
-                cell.inputText = contactInfo?.firstName ?? nil
+            switch section {
             case 1:
-                cell.inputNameText = "Last Name"
-                cell.inputText = contactInfo?.lastName ?? nil
-            default: break
-            }
-            
-            return cell
-        case 2:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: contactInputFieldCellId, for: indexPath) as? ContactTextInputTableCell else {
-                return UITableViewCell()
-            }
-            
-            cell.selectionStyle = .none
-            
-            switch row {
-            case 0:
-                cell.inputNameText = "Email"
-                cell.inputText = contactInfo?.email ?? nil
-            case 1:
-                cell.inputNameText = "Phone"
-                cell.inputText = contactInfo?.phone ?? nil
+                switch row {
+                case 0:
+                    cell.inputNameText = "First Name"
+                    cell.inputText = contactInfo?.firstName ?? nil
+                case 1:
+                    cell.inputNameText = "Last Name"
+                    cell.inputText = contactInfo?.lastName ?? nil
+                default: break
+                }
+            case 2:
+                switch row {
+                case 1:
+                    cell.inputNameText = "Email"
+                    cell.inputText = contactInfo?.email ?? nil
+                case 2:
+                    cell.inputNameText = "Phone"
+                    cell.inputText = contactInfo?.phone ?? nil
+                default:
+                    cell.isRemoveInputTextField = true
+                }
             default: break
             }
             
@@ -182,7 +186,10 @@ extension ContactFormVC: UITableViewDataSource {
 
 extension ContactFormVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        let row = indexPath.row
+        let section = indexPath.section
+        
+        return row == 0 && section == 2 ? 0 : UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -191,11 +198,19 @@ extension ContactFormVC: UITableViewDelegate {
 }
 
 extension ContactFormVC: ContactFormViewDelegate {
-    func displayContactPerson(contactInfo: PersonInfo) {
+    func displayContactPerson(contactInfo: ContactInfo) {
         self.contactInfo = contactInfo
     }
     
     func saveContactPerson() {
         cancelAction()
+    }
+}
+
+extension ContactFormVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        IQKeyboardManager.shared.goNext()
+        
+        return true
     }
 }

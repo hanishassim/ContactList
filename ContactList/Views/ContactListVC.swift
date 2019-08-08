@@ -22,8 +22,8 @@ class ContactListVC: UIViewController {
     }()
     
     fileprivate let contactInfoCellId = "contactInfoCell"
-    fileprivate let contactListPresenter = ContactListPresenter(personInfoService: PersonInfoService())
-    fileprivate var contactList: [PersonInfo]? {
+    fileprivate let contactListPresenter = ContactListPresenter(personInfoService: ContactInfoService())
+    fileprivate var contactList: [ContactInfo]? {
         didSet {
             tableView.reloadData()
             tableView.refreshControl?.endRefreshing()
@@ -37,7 +37,7 @@ class ContactListVC: UIViewController {
         
         initTableView(tableView: self.tableView)
         
-        contactListPresenter.setViewDelegate(delegate: self)
+        contactListPresenter.setDelegate(delegate: self)
         
         reloadContactList()
         
@@ -149,7 +149,7 @@ extension ContactListVC: UITableViewDelegate {
 }
 
 extension ContactListVC: ContactListViewDelegate {
-    func displayContactList(list: [PersonInfo]) {
+    func displayContactList(list: [ContactInfo]) {
         contactList = list
     }
 }

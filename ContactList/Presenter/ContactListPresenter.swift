@@ -9,19 +9,19 @@
 import Foundation
 
 protocol ContactListViewDelegate: class {
-    func displayContactList(list: [PersonInfo])
+    func displayContactList(list: [ContactInfo])
 }
 
 class ContactListPresenter {
-    fileprivate let personInfoService: PersonInfoService
+    fileprivate let personInfoService: ContactInfoService
     
     fileprivate weak var delegate: ContactListViewDelegate?
     
-    init(personInfoService: PersonInfoService) {
+    init(personInfoService: ContactInfoService) {
         self.personInfoService = personInfoService
     }
     
-    func setViewDelegate(delegate: ContactListViewDelegate?) {
+    func setDelegate(delegate: ContactListViewDelegate?) {
         self.delegate = delegate
     }
     

@@ -27,10 +27,35 @@ class ContactTextInputTableCell: TableBaseCell {
         tf.textColor = .black
         tf.tintColor = accentColor
         tf.clearButtonMode = .whileEditing
+        tf.returnKeyType = .next
+        tf.autocorrectionType = .no
         tf.borderStyle = UITextField.BorderStyle.roundedRect
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
     }()
+    
+    var inputTextFieldDelegate: UITextFieldDelegate? = nil {
+        didSet {
+            inputTextField.delegate = inputTextFieldDelegate
+        }
+    }
+    
+    var isRemoveInputTextField: Bool = false {
+        didSet {
+            if isRemoveInputTextField {
+                inputTextField.removeFromSuperview()
+            }
+        }
+    }
+    
+    var inputTextFieldTag: Int {
+        get {
+            return inputNameLabel.tag
+        }
+        set (newValue){
+            inputNameLabel.tag = newValue
+        }
+    }
     
     var inputNameText: String {
         get {
@@ -67,5 +92,7 @@ class ContactTextInputTableCell: TableBaseCell {
             NSLayoutConstraint(item: inputTextField, attribute: .centerY, relatedBy: .equal, toItem: inputNameLabel, attribute: .centerY, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: inputTextField, attribute: .trailing, relatedBy: .equal, toItem: contentView, attribute: .trailing, multiplier: 1, constant: -16),
             ])
+        
+        selectionStyle = .none
     }
 }

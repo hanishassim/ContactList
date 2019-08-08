@@ -8,7 +8,32 @@
 
 import Foundation
 
-class PersonInfoService {
+class ContactInfoService {
+    // MARK: - ContactInfo getter and setter functions
+    
+    func getContactList(completion: (_ contactList: [ContactInfo]) -> Void) {
+        loadDocumentsJSON { (personInfos) in
+            completion(personInfos)
+        }
+    }
+    
+    func getPersonInfo(id: String, completion: (_ contactList: ContactInfo?) -> Void) {
+        loadDocumentsJSON { (personInfos) in
+            if let foundPersonInfo = personInfos.first(where: {$0.id == id}) {
+                completion(foundPersonInfo)
+            } else {
+                completion(nil)
+            }
+        }
+    }
+    
+    func setPersonInfo(contactInfo: ContactInfo, completion: @escaping (Bool) -> Void) {
+        storeJSON(contactInfo: contactInfo) { (done) in
+            completion(done)
+        }
+    }
+    
+    // MARK:- To copy JSON to Documents folder (Local Storage) to enable CRUD
     func copyJsonIfNeeded() {
         let fileManager = FileManager.default
         
@@ -34,12 +59,13 @@ class PersonInfoService {
         }
     }
     
-    fileprivate func decodeFileToPersonInfo(_ filename: URL, _ completion: ([PersonInfo]) -> Void) throws {
+    // MARK:- To decode JSON file to conform by ContactInfo object
+    fileprivate func decodeFileToContactInfo(_ filename: URL, _ completion: ([ContactInfo]) -> Void) throws {
         let data = try Data(contentsOf: URL(fileURLWithPath: filename.path), options: .mappedIfSafe)
         //Convert to JSON format
         do {
             let decoder = JSONDecoder()
-            let jsonResult = try decoder.decode([PersonInfo].self, from: data)
+            let jsonResult = try decoder.decode([ContactInfo].self, from: data)
             
             completion(jsonResult)
         } catch let jsonError {
@@ -47,45 +73,32 @@ class PersonInfoService {
         }
     }
     
-    fileprivate func loadDocumentsJSON(completion: (_ contactList: [PersonInfo]) -> Void) {
+    // MARK: To load JSON from Documents folder (Local Storage)
+    fileprivate func loadDocumentsJSON(completion: (_ contactList: [ContactInfo]) -> Void) {
         do {
             let filename = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("data").appendingPathExtension("json")
             
-            try decodeFileToPersonInfo(filename, completion)
+            try decodeFileToContactInfo(filename, completion)
         } catch {
             print("The data could not be encoded to json")
         }
     }
     
-    fileprivate func loadBundleJSON(completion: (_ contactList: [PersonInfo]) -> Void) {
+    // MARK: To load JSON from Bundle (XCode directory)
+    fileprivate func loadBundleJSON(completion: (_ contactList: [ContactInfo]) -> Void) {
         if let path = Bundle.main.path(forResource: "data", ofType: "json") {
             do {
-                try decodeFileToPersonInfo(URL.init(string: path)!, completion)
+                try decodeFileToContactInfo(URL.init(string: path)!, completion)
             } catch {
                 print("The file data.json could not be loaded")
             }
         }
     }
     
-    func getContactList(completion: (_ contactList: [PersonInfo]) -> Void) {
-        loadDocumentsJSON { (personInfos) in
-            completion(personInfos)
-        }
-    }
-    
-    func getPersonInfo(id: String, completion: (_ contactList: PersonInfo?) -> Void) {
-        loadDocumentsJSON { (personInfos) in
-            if let foundPersonInfo = personInfos.first(where: {$0.id == id}) {
-                completion(foundPersonInfo)
-            } else {
-                completion(nil)
-            }
-        }
-    }
-    
-    fileprivate func storeJSON(contactInfo: PersonInfo, completion: @escaping (Bool) -> Void) {
+    // MARK: To store/save JSON on Documents folder (Local Storage)
+    fileprivate func storeJSON(contactInfo: ContactInfo, completion: @escaping (Bool) -> Void) {
         // Load existing contactList, and append to end, or to edit current contactInfo data
-        loadDocumentsJSON { (contactList: [PersonInfo]) in
+        loadDocumentsJSON { (contactList: [ContactInfo]) in
             var list = contactList
 
             if let row = contactList.firstIndex(where: {$0.id == contactInfo.id}) {
@@ -133,12 +146,6 @@ class PersonInfoService {
             } catch {
                 print("The data could not be encoded to json")
             }
-        }
-    }
-    
-    func setPersonInfo(contactInfo: PersonInfo, completion: @escaping (Bool) -> Void) {
-        storeJSON(contactInfo: contactInfo) { (done) in
-            completion(done)
         }
     }
 }

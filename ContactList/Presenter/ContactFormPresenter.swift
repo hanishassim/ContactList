@@ -9,20 +9,20 @@
 import Foundation
 
 protocol ContactFormViewDelegate: class {
-    func displayContactPerson(contactInfo: PersonInfo)
+    func displayContactPerson(contactInfo: ContactInfo)
     func saveContactPerson()
 }
 
 class ContactFormPresenter {
-    fileprivate let personInfoService: PersonInfoService
+    fileprivate let personInfoService: ContactInfoService
     
     fileprivate weak var delegate: ContactFormViewDelegate?
     
-    init(personInfoService: PersonInfoService) {
+    init(personInfoService: ContactInfoService) {
         self.personInfoService = personInfoService
     }
     
-    func setViewDelegate(delegate: ContactFormViewDelegate?) {
+    func setDelegate(delegate: ContactFormViewDelegate?) {
         self.delegate = delegate
     }
     
@@ -35,10 +35,11 @@ class ContactFormPresenter {
         }
     }
     
-    func storePersonInfo(contactInfo: PersonInfo) {
+    func storePersonInfo(contactInfo: ContactInfo) {
         // Save to json file here
         personInfoService.setPersonInfo(contactInfo: contactInfo) { [weak self] done in
             if done {
+                // Refresh Contact List
                 NotificationCenter.default.post(name: Notification.Name.DidSaveContactInfo, object: nil)
                 self?.delegate?.saveContactPerson()
             }
