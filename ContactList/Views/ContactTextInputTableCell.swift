@@ -43,7 +43,7 @@ class ContactTextInputTableCell: TableBaseCell {
     
     var inputText: String? {
         get {
-            return inputTextField.text!
+            return inputTextField.text ?? nil
         }
         set (newValue){
              inputTextField.text = newValue

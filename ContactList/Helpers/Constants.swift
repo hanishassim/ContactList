@@ -9,3 +9,7 @@
 import Foundation
 
 let accentColor = "#ff8c00".hexToUIColor()
+
+extension Notification.Name {
+    static let DidSaveContactInfo = Notification.Name("DidSaveContactInfo")
+}

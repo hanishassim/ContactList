@@ -73,6 +73,10 @@ class ContactFormVC: UIViewController {
         navigationController?.dismiss(animated: true, completion: nil)
     }
     
+    fileprivate func fetchInputCell(indexPath: IndexPath) -> ContactTextInputTableCell? {
+        return tableView.cellForRow(at: indexPath) as? ContactTextInputTableCell
+    }
+    
     @objc func saveContactInfoAction() {
         guard let firstNameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? ContactTextInputTableCell, let lastNameCell = tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as? ContactTextInputTableCell, let firstName = firstNameCell.inputText, !firstName.isEmpty, let lastName = lastNameCell.inputText, !lastName.isEmpty else {
             let alertController = UIAlertController(title: "Error", message: "First Name and Last Name is required.", preferredStyle: .alert)
@@ -84,8 +88,8 @@ class ContactFormVC: UIViewController {
             return
         }
         
-        let emailCell = tableView.cellForRow(at: IndexPath(row: 0, section: 2)) as? ContactTextInputTableCell
-        let phoneCell = tableView.cellForRow(at: IndexPath(row: 1, section: 2)) as? ContactTextInputTableCell
+        let emailCell = fetchInputCell(indexPath: IndexPath(row: 0, section: 2))
+        let phoneCell = fetchInputCell(indexPath: IndexPath(row: 1, section: 2))
         
         let newContact = PersonInfo(id: contactInfoId ?? RandomCodeGenerator().randomString(), firstName: firstName, lastName: lastName, email: emailCell?.inputText, phone: phoneCell?.inputText)
         

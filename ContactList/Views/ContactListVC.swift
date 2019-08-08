@@ -40,6 +40,8 @@ class ContactListVC: UIViewController {
         contactListPresenter.setViewDelegate(delegate: self)
         
         reloadContactList()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadContactList), name: Notification.Name.DidSaveContactInfo, object: nil)
     }
     
     override func viewWillLayoutSubviews() {

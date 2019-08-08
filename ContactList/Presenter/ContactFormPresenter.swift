@@ -39,6 +39,7 @@ class ContactFormPresenter {
         // Save to json file here
         personInfoService.setPersonInfo(contactInfo: contactInfo) { [weak self] done in
             if done {
+                NotificationCenter.default.post(name: Notification.Name.DidSaveContactInfo, object: nil)
                 self?.delegate?.saveContactPerson()
             }
         }
