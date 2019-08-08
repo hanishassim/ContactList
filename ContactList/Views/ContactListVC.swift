@@ -8,11 +8,6 @@
 
 import UIKit
 
-protocol ContactListViewDelegate: class {
-    func displayContactList(list: [PersonInfo])
-    func displayContactPerson(id: String)
-}
-
 class ContactListVC: UIViewController {
     fileprivate lazy var tableView: UITableView! = {
         let table = UITableView()
@@ -80,16 +75,24 @@ class ContactListVC: UIViewController {
         presentContactForm()
     }
     
-    fileprivate func presentContactForm(rowId: Int? = nil) {
+    fileprivate func presentContactForm(contactInfoId: String? = nil) {
         let vc = ContactFormVC()
 
-        if let contactList = contactList, let row = rowId {
-            vc.contactInfo = contactList[row]
+        if let contactInfoId = contactInfoId {
+            vc.contactInfoId = contactInfoId
         }
         
         let navController = UINavigationController(rootViewController: vc)
         navController.navigationBar.tintColor = accentColor
         present(navController, animated: true, completion: nil)
+    }
+    
+    fileprivate func retainCellState(tableView: UITableView, indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? ContactInfoTableCell else {
+            return
+        }
+        
+        cell.retainViewWhenSelected()
     }
 }
 
@@ -121,18 +124,31 @@ extension ContactListVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presentContactForm(rowId: indexPath.row)
+        retainCellState(tableView: tableView, indexPath: indexPath)
+        
+        let row = indexPath.row
+        
+        guard let contactList = contactList else {
+            return
+        }
+        
+        presentContactForm(contactInfoId: contactList[row].id)
+        
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+       retainCellState(tableView: tableView, indexPath: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        retainCellState(tableView: tableView, indexPath: indexPath)
     }
 }
 
 extension ContactListVC: ContactListViewDelegate {
     func displayContactList(list: [PersonInfo]) {
         contactList = list
-    }
-
-    func displayContactPerson(id: String) {
-        print(id)
     }
 }
 

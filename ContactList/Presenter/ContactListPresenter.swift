@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol ContactListViewDelegate: class {
+    func displayContactList(list: [PersonInfo])
+}
+
 class ContactListPresenter {
     fileprivate let personInfoService: PersonInfoService
     
@@ -27,15 +31,6 @@ class ContactListPresenter {
                 return
             }
             self?.contactListViewDelegate?.displayContactList(list: personInfos)
-        }
-    }
-    
-    func personInfoSelected(id: String) {
-        personInfoService.getPersonInfo(id: id) { [weak self] personInfo in
-            guard let personInfo = personInfo else {
-                return
-            }
-            self?.contactListViewDelegate?.displayContactPerson(id: personInfo.id)
         }
     }
 }

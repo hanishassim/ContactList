@@ -22,12 +22,26 @@ class ContactFormVC: UIViewController {
     
     fileprivate let contactAvatarCellId = "contactAvatarCell"
     fileprivate let contactInputFieldCellId = "contactInputFieldCell"
-    var contactInfo: PersonInfo?
+    fileprivate let contactFormPresenter = ContactFormPresenter(personInfoService: PersonInfoService())
+    fileprivate var contactInfo: PersonInfo? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    var contactInfoId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         initTableView(tableView: self.tableView)
+        
+        guard let contactInfoId = contactInfoId else {
+            return
+        }
+        
+        contactFormPresenter.setViewDelegate(contactFormViewDelegate: self)
+        contactFormPresenter.personInfoSelected(id: contactInfoId)
     }
     
     override func viewWillLayoutSubviews() {
@@ -59,6 +73,21 @@ class ContactFormVC: UIViewController {
     }
     
     @objc func saveContactInfoAction() {
+        guard let firstNameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? ContactTextInputTableCell, let lastNameCell = tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as? ContactTextInputTableCell, let firstName = firstNameCell.inputText, !firstName.isEmpty, let lastName = lastNameCell.inputText, !lastName.isEmpty else {
+            let alertController = UIAlertController(title: "Error", message: "First Name and Last Name is required.", preferredStyle: .alert)
+            alertController.view.tintColor = accentColor
+            let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+            return
+        }
+        
+        let emailCell = tableView.cellForRow(at: IndexPath(row: 0, section: 2)) as? ContactTextInputTableCell
+        let phoneCell = tableView.cellForRow(at: IndexPath(row: 1, section: 2)) as? ContactTextInputTableCell
+        
+//        let newContact = PersonInfo(id: ShortCodeGenerator.getCode(length: 24), firstName: firstName, lastName: lastName, email: emailCell?.inputText, phone: phoneCell?.inputText)
+        
         
     }
 }
@@ -103,10 +132,10 @@ extension ContactFormVC: UITableViewDataSource {
             switch row {
             case 0:
                 cell.inputNameText = "First Name"
-                cell.inputText = contactInfo?.firstName ?? String()
+                cell.inputText = contactInfo?.firstName ?? nil
             case 1:
                 cell.inputNameText = "Last Name"
-                cell.inputText = contactInfo?.lastName ?? String()
+                cell.inputText = contactInfo?.lastName ?? nil
             default: break
             }
             
@@ -121,10 +150,10 @@ extension ContactFormVC: UITableViewDataSource {
             switch row {
             case 0:
                 cell.inputNameText = "Email"
-                cell.inputText = contactInfo?.email ?? String()
+                cell.inputText = contactInfo?.email ?? nil
             case 1:
                 cell.inputNameText = "Phone"
-                cell.inputText = contactInfo?.phone ?? String()
+                cell.inputText = contactInfo?.phone ?? nil
             default: break
             }
             
@@ -153,5 +182,15 @@ extension ContactFormVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+}
+
+extension ContactFormVC: ContactFormViewDelegate {
+    func displayContactPerson(contactInfo: PersonInfo) {
+        self.contactInfo = contactInfo
+    }
+    
+    func saveContactPerson(contactInfo: PersonInfo) {
+        
     }
 }

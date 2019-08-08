@@ -9,7 +9,7 @@
 import Foundation
 
 class PersonInfoService {
-    func loadJSON(completion: @escaping ([PersonInfo]) -> Void) {
+    fileprivate func loadJSON(completion: @escaping ([PersonInfo]) -> Void) {
         if let path = Bundle.main.path(forResource: "data", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -36,11 +36,6 @@ class PersonInfoService {
     
     func getPersonInfo(id: String, completion: @escaping (PersonInfo?) -> Void) {
         loadJSON { (personInfos) in
-            for personInfo in personInfos {
-                print(personInfo.firstName)
-                
-            }
-            
             if let foundPersonInfo = personInfos.first(where: {$0.id == id}) {
                 completion(foundPersonInfo)
             } else {

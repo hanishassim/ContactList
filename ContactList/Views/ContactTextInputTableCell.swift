@@ -32,15 +32,21 @@ class ContactTextInputTableCell: TableBaseCell {
         return tf
     }()
     
-    var inputNameText = String() {
-        didSet {
-            inputNameLabel.text = inputNameText
+    var inputNameText: String {
+        get {
+            return inputNameLabel.text!
+        }
+        set (newValue){
+            inputNameLabel.text = newValue
         }
     }
     
-    var inputText = String() {
-        didSet {
-            inputTextField.text = inputText
+    var inputText: String? {
+        get {
+            return inputTextField.text!
+        }
+        set (newValue){
+             inputTextField.text = newValue
         }
     }
     

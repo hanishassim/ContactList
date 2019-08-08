@@ -63,4 +63,8 @@ class ContactInfoTableCell: TableBaseCell {
             NSLayoutConstraint(item: contactNameLabel, attribute: .centerY, relatedBy: .equal, toItem: contactImageView, attribute: .centerY, multiplier: 1, constant: 0),
             ])
     }
+    
+    func retainViewWhenSelected() {
+        contactImageView.backgroundColor = accentColor
+    }
 }
