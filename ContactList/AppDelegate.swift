@@ -15,12 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        PersonInfoService().copyJsonIfNeeded()
+        
         let cl = ContactListVC()
         let navVC = UINavigationController(rootViewController: cl)
         navVC.navigationBar.tintColor = accentColor
-        window?.rootViewController = navVC
-        window?.makeKeyAndVisible()
-
+        self.window?.rootViewController = navVC
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 

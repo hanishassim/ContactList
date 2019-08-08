@@ -18,7 +18,7 @@
 		07A2BBC922FBEE1C00659489 /* ContactFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A2BBC822FBEE1C00659489 /* ContactFormVC.swift */; };
 		07A2BBCB22FBF18800659489 /* ContactAvatarTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A2BBCA22FBF18800659489 /* ContactAvatarTableCell.swift */; };
 		07A2BBCD22FBF4A800659489 /* ContactTextInputTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A2BBCC22FBF4A800659489 /* ContactTextInputTableCell.swift */; };
-		07A2BBD522FC0EE400659489 /* ShortCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A2BBD422FC0EE400659489 /* ShortCodeGenerator.swift */; };
+		07A2BBD522FC0EE400659489 /* RandomCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A2BBD422FC0EE400659489 /* RandomCodeGenerator.swift */; };
 		07A2BBD722FC447000659489 /* ContactFormPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A2BBD622FC447000659489 /* ContactFormPresenter.swift */; };
 		07C9321122FBD23F006DA51E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C9321022FBD23F006DA51E /* AppDelegate.swift */; };
 		07C9321322FBD23F006DA51E /* ContactListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C9321222FBD23F006DA51E /* ContactListVC.swift */; };
@@ -39,7 +39,7 @@
 		07A2BBC822FBEE1C00659489 /* ContactFormVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFormVC.swift; sourceTree = "<group>"; };
 		07A2BBCA22FBF18800659489 /* ContactAvatarTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactAvatarTableCell.swift; sourceTree = "<group>"; };
 		07A2BBCC22FBF4A800659489 /* ContactTextInputTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTextInputTableCell.swift; sourceTree = "<group>"; };
-		07A2BBD422FC0EE400659489 /* ShortCodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortCodeGenerator.swift; sourceTree = "<group>"; };
+		07A2BBD422FC0EE400659489 /* RandomCodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomCodeGenerator.swift; sourceTree = "<group>"; };
 		07A2BBD622FC447000659489 /* ContactFormPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFormPresenter.swift; sourceTree = "<group>"; };
 		07C9320D22FBD23F006DA51E /* ContactList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07C9321022FBD23F006DA51E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,7 +99,7 @@
 			children = (
 				07A2BBBD22FBDEE600659489 /* String Extensions.swift */,
 				07A2BBC422FBE5D000659489 /* Constants.swift */,
-				07A2BBD422FC0EE400659489 /* ShortCodeGenerator.swift */,
+				07A2BBD422FC0EE400659489 /* RandomCodeGenerator.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -227,7 +227,7 @@
 				07A2BBC322FBE0C200659489 /* TableBaseCell.swift in Sources */,
 				07A2BBB022FBD39100659489 /* PersonInfo.swift in Sources */,
 				07A2BBCD22FBF4A800659489 /* ContactTextInputTableCell.swift in Sources */,
-				07A2BBD522FC0EE400659489 /* ShortCodeGenerator.swift in Sources */,
+				07A2BBD522FC0EE400659489 /* RandomCodeGenerator.swift in Sources */,
 				07A2BBB322FBD40900659489 /* PersonInfoService.swift in Sources */,
 				07A2BBCB22FBF18800659489 /* ContactAvatarTableCell.swift in Sources */,
 				07C9321122FBD23F006DA51E /* AppDelegate.swift in Sources */,

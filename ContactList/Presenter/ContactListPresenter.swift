@@ -15,22 +15,19 @@ protocol ContactListViewDelegate: class {
 class ContactListPresenter {
     fileprivate let personInfoService: PersonInfoService
     
-    fileprivate weak var contactListViewDelegate: ContactListViewDelegate?
+    fileprivate weak var delegate: ContactListViewDelegate?
     
     init(personInfoService: PersonInfoService) {
         self.personInfoService = personInfoService
     }
     
-    func setViewDelegate(contactListViewDelegate: ContactListViewDelegate?) {
-        self.contactListViewDelegate = contactListViewDelegate
+    func setViewDelegate(delegate: ContactListViewDelegate?) {
+        self.delegate = delegate
     }
     
     func personInfoList() {
         personInfoService.getContactList() { [weak self] personInfos in
-            guard let personInfos = personInfos else {
-                return
-            }
-            self?.contactListViewDelegate?.displayContactList(list: personInfos)
+            self?.delegate?.displayContactList(list: personInfos)
         }
     }
 }

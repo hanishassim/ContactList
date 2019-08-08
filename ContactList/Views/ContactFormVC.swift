@@ -36,11 +36,12 @@ class ContactFormVC: UIViewController {
 
         initTableView(tableView: self.tableView)
         
+        contactFormPresenter.setViewDelegate(delegate: self)
+
         guard let contactInfoId = contactInfoId else {
             return
         }
         
-        contactFormPresenter.setViewDelegate(contactFormViewDelegate: self)
         contactFormPresenter.personInfoSelected(id: contactInfoId)
     }
     
@@ -86,9 +87,9 @@ class ContactFormVC: UIViewController {
         let emailCell = tableView.cellForRow(at: IndexPath(row: 0, section: 2)) as? ContactTextInputTableCell
         let phoneCell = tableView.cellForRow(at: IndexPath(row: 1, section: 2)) as? ContactTextInputTableCell
         
-//        let newContact = PersonInfo(id: ShortCodeGenerator.getCode(length: 24), firstName: firstName, lastName: lastName, email: emailCell?.inputText, phone: phoneCell?.inputText)
+        let newContact = PersonInfo(id: contactInfoId ?? RandomCodeGenerator().randomString(), firstName: firstName, lastName: lastName, email: emailCell?.inputText, phone: phoneCell?.inputText)
         
-        
+        contactFormPresenter.storePersonInfo(contactInfo: newContact)
     }
 }
 
@@ -190,7 +191,7 @@ extension ContactFormVC: ContactFormViewDelegate {
         self.contactInfo = contactInfo
     }
     
-    func saveContactPerson(contactInfo: PersonInfo) {
-        
+    func saveContactPerson() {
+        cancelAction()
     }
 }

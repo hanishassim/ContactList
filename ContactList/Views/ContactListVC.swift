@@ -37,7 +37,7 @@ class ContactListVC: UIViewController {
         
         initTableView(tableView: self.tableView)
         
-        contactListPresenter.setViewDelegate(contactListViewDelegate: self)
+        contactListPresenter.setViewDelegate(delegate: self)
         
         reloadContactList()
     }
