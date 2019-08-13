@@ -43,6 +43,7 @@ class ContactTextInputTableCell: TableBaseCell {
     var isRemoveInputTextField: Bool = false {
         didSet {
             if isRemoveInputTextField {
+                inputNameLabel.removeFromSuperview()
                 inputTextField.removeFromSuperview()
             }
         }

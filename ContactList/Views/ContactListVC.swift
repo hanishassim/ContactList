@@ -78,11 +78,15 @@ class ContactListVC: UIViewController {
     }
     
     fileprivate func presentContactForm(contactInfoId: String? = nil) {
+<<<<<<< HEAD
         let vc = ContactFormVC()
 
         if let contactInfoId = contactInfoId {
             vc.contactInfoId = contactInfoId
         }
+=======
+        let vc = ContactFormVC(contactInfoId: contactInfoId)
+>>>>>>> ea73023... Fix on ContactFormVC UI constraints bug; End commit
         
         let navController = UINavigationController(rootViewController: vc)
         navController.navigationBar.tintColor = accentColor
@@ -119,10 +123,6 @@ extension ContactListVC: UITableViewDataSource {
 extension ContactListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
