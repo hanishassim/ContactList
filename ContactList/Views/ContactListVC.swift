@@ -79,11 +79,15 @@ class ContactListVC: UIViewController {
     
     fileprivate func presentContactForm(contactInfoId: String? = nil) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         let vc = ContactFormVC()
 
         if let contactInfoId = contactInfoId {
             vc.contactInfoId = contactInfoId
         }
+=======
+        let vc = ContactFormVC(contactInfoId: contactInfoId)
+>>>>>>> ea73023... Fix on ContactFormVC UI constraints bug; End commit
 =======
         let vc = ContactFormVC(contactInfoId: contactInfoId)
 >>>>>>> ea73023... Fix on ContactFormVC UI constraints bug; End commit
