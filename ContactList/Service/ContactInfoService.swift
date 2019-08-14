@@ -14,15 +14,14 @@ class ContactInfoService {
     private init() { }
 
     // MARK: - ContactInfo getter and setter functions
-    
-    func getContactList(completion: (_ contactList: [ContactInfo]) -> Void) {
-        loadDocumentsJSON { (personInfos) in
+    func getContactList(completion: contactListCompletion) {
+        loadJsonDocument { (personInfos) in
             completion(personInfos)
         }
     }
     
     func getPersonInfo(id: String, completion: (_ contactList: ContactInfo?) -> Void) {
-        loadDocumentsJSON { (personInfos) in
+        loadJsonDocument { (personInfos) in
             if let foundPersonInfo = personInfos.first(where: {$0.id == id}) {
                 completion(foundPersonInfo)
             } else {
@@ -78,7 +77,7 @@ class ContactInfoService {
     }
     
     // MARK: To load JSON from Documents folder (Local Storage)
-    fileprivate func loadDocumentsJSON(completion: (_ contactList: [ContactInfo]) -> Void) {
+    fileprivate func loadJsonDocument(completion: contactListCompletion) {
         do {
             let filename = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("data").appendingPathExtension("json")
             
@@ -105,7 +104,7 @@ class ContactInfoService {
     // MARK: To store/save JSON on Documents folder (Local Storage)
     fileprivate func storeJSON(contactInfo: ContactInfo, completion: @escaping (Bool) -> Void) {
         // Load existing contactList, and append to end, or to edit current contactInfo data
-        loadDocumentsJSON { (contactList: [ContactInfo]) in
+        loadJsonDocument { (contactList: [ContactInfo]) in
             var list = contactList
 
             if let row = contactList.firstIndex(where: {$0.id == contactInfo.id}) {

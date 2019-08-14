@@ -103,7 +103,7 @@ class ContactFormVC: UIViewController {
         let emailCell = fetchInputCell(indexPath: IndexPath(row: 0, section: 2))
         let phoneCell = fetchInputCell(indexPath: IndexPath(row: 1, section: 2))
         
-        let newContact = ContactInfo(id: contactInfoId ?? RandomCodeGenerator().randomString(), firstName: firstName, lastName: lastName, email: emailCell?.inputText, phone: phoneCell?.inputText)
+        let newContact = ContactInfo(id: contactInfoId, firstName: firstName, lastName: lastName, email: emailCell?.inputText, phone: phoneCell?.inputText)
         
         contactFormPresenter.storePersonInfo(contactInfo: newContact)
     }

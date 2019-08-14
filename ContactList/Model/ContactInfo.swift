@@ -15,6 +15,14 @@ struct ContactInfo: Codable {
     let email: String?
     let phone: String?
     
+    init(id: String?, firstName: String, lastName: String, email: String?, phone: String?) {
+        self.id = id ?? RandomCodeGenerator().randomString()
+        self.firstName = firstName
+        self.lastName = lastName
+        self.email = email
+        self.phone = phone
+    }
+    
     func getDisplayName() -> String {
         return firstName + " " + lastName
     }

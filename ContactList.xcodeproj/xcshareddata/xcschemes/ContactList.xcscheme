@@ -28,6 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "07E3F5E223040C1600384E01"
+               BuildableName = "ContactListTests.xctest"
+               BlueprintName = "ContactListTests"
+               ReferencedContainer = "container:ContactList.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "07E3F5F023040C4000384E01"
+               BuildableName = "ContactListUITests.xctest"
+               BlueprintName = "ContactListUITests"
+               ReferencedContainer = "container:ContactList.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
