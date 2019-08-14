@@ -9,6 +9,10 @@
 import Foundation
 
 class ContactInfoService {
+    static let shared = ContactInfoService()
+    
+    private init() { }
+
     // MARK: - ContactInfo getter and setter functions
     
     func getContactList(completion: (_ contactList: [ContactInfo]) -> Void) {
@@ -84,6 +88,7 @@ class ContactInfoService {
         }
     }
     
+<<<<<<< HEAD
     // MARK: To load JSON from Bundle (XCode directory)
     fileprivate func loadBundleJSON(completion: (_ contactList: [ContactInfo]) -> Void) {
         if let path = Bundle.main.path(forResource: "data", ofType: "json") {
@@ -95,6 +100,8 @@ class ContactInfoService {
         }
     }
     
+=======
+>>>>>>> c086a69... Code refactoring; Removed unused function; Showing appropriate keyboard type for each textField; ContactInfoService can only be accessed via its singleton
     // MARK: To store/save JSON on Documents folder (Local Storage)
     fileprivate func storeJSON(contactInfo: ContactInfo, completion: @escaping (Bool) -> Void) {
         // Load existing contactList, and append to end, or to edit current contactInfo data

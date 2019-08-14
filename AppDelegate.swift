@@ -11,7 +11,6 @@ import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
 
     fileprivate func initIQKeyboardManager() {
@@ -21,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        ContactInfoService().copyJsonIfNeeded()
+        ContactInfoService.shared.copyJsonIfNeeded()
         
         let cl = ContactListVC()
         let navVC = UINavigationController(rootViewController: cl)

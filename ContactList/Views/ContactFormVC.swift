@@ -23,7 +23,7 @@ class ContactFormVC: UIViewController {
     
     fileprivate let contactAvatarCellId = "contactAvatarCell"
     fileprivate let contactInputFieldCellId = "contactInputFieldCell"
-    fileprivate let contactFormPresenter = ContactFormPresenter(personInfoService: ContactInfoService())
+    fileprivate let contactFormPresenter = ContactFormPresenter()
     fileprivate var contactInfo: ContactInfo? {
         didSet {
             tableView.reloadData()
@@ -219,6 +219,15 @@ extension ContactFormVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         IQKeyboardManager.shared.goNext()
         
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField.tag == 4 { // Phone text field
+            let allowedCharacters = CharacterSet(charactersIn:"+0123456789")
+            let characterSet = CharacterSet(charactersIn: string)
+            return allowedCharacters.isSuperset(of: characterSet)
+        }
         return true
     }
 }

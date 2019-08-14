@@ -14,20 +14,14 @@ protocol ContactFormViewDelegate: class {
 }
 
 class ContactFormPresenter {
-    fileprivate let personInfoService: ContactInfoService
-    
     fileprivate weak var delegate: ContactFormViewDelegate?
-    
-    init(personInfoService: ContactInfoService) {
-        self.personInfoService = personInfoService
-    }
     
     func setDelegate(delegate: ContactFormViewDelegate?) {
         self.delegate = delegate
     }
     
     func personInfoSelected(id: String) {
-        personInfoService.getPersonInfo(id: id) { [weak self] personInfo in
+        ContactInfoService.shared.getPersonInfo(id: id) { [weak self] personInfo in
             guard let contactInfo = personInfo else {
                 return
             }
@@ -37,7 +31,7 @@ class ContactFormPresenter {
     
     func storePersonInfo(contactInfo: ContactInfo) {
         // Save to json file here
-        personInfoService.setPersonInfo(contactInfo: contactInfo) { [weak self] done in
+        ContactInfoService.shared.setPersonInfo(contactInfo: contactInfo) { [weak self] done in
             if done {
                 // Refresh Contact List
                 NotificationCenter.default.post(name: Notification.Name.DidSaveContactInfo, object: nil)

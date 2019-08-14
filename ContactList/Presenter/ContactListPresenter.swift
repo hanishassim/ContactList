@@ -13,20 +13,14 @@ protocol ContactListViewDelegate: class {
 }
 
 class ContactListPresenter {
-    fileprivate let personInfoService: ContactInfoService
-    
     fileprivate weak var delegate: ContactListViewDelegate?
-    
-    init(personInfoService: ContactInfoService) {
-        self.personInfoService = personInfoService
-    }
     
     func setDelegate(delegate: ContactListViewDelegate?) {
         self.delegate = delegate
     }
     
     func personInfoList() {
-        personInfoService.getContactList() { [weak self] personInfos in
+        ContactInfoService.shared.getContactList() { [weak self] personInfos in
             self?.delegate?.displayContactList(list: personInfos)
         }
     }

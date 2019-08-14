@@ -22,7 +22,7 @@ class ContactListVC: UIViewController {
     }()
     
     fileprivate let contactInfoCellId = "contactInfoCell"
-    fileprivate let contactListPresenter = ContactListPresenter(personInfoService: ContactInfoService())
+    fileprivate let contactListPresenter = ContactListPresenter()
     fileprivate var contactList: [ContactInfo]? {
         didSet {
             tableView.reloadData()
