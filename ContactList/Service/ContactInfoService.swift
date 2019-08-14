@@ -87,20 +87,6 @@ class ContactInfoService {
         }
     }
     
-<<<<<<< HEAD
-    // MARK: To load JSON from Bundle (XCode directory)
-    fileprivate func loadBundleJSON(completion: (_ contactList: [ContactInfo]) -> Void) {
-        if let path = Bundle.main.path(forResource: "data", ofType: "json") {
-            do {
-                try decodeFileToContactInfo(URL.init(string: path)!, completion)
-            } catch {
-                print("The file data.json could not be loaded")
-            }
-        }
-    }
-    
-=======
->>>>>>> c086a69... Code refactoring; Removed unused function; Showing appropriate keyboard type for each textField; ContactInfoService can only be accessed via its singleton
     // MARK: To store/save JSON on Documents folder (Local Storage)
     fileprivate func storeJSON(contactInfo: ContactInfo, completion: @escaping (Bool) -> Void) {
         // Load existing contactList, and append to end, or to edit current contactInfo data

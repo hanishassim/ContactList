@@ -20,9 +20,14 @@ class ContactAvatarTableCell: TableBaseCell {
     }()
     
     fileprivate let contactImageViewHeight: CGFloat = 98
+    fileprivate var contactImageViewHeightConstraint: NSLayoutConstraint!
     
     override func setupCell() {
         contentView.addSubview(contactImageView)
+        
+        contactImageViewHeightConstraint = NSLayoutConstraint(item: contactImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: contactImageViewHeight)
+        
+        contactImageViewHeightConstraint.priority = UILayoutPriority(999)
         
         NSLayoutConstraint.activate([
             NSLayoutConstraint(item: contactImageView, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 16),
@@ -30,7 +35,7 @@ class ContactAvatarTableCell: TableBaseCell {
             NSLayoutConstraint(item: contactImageView, attribute: .leading, relatedBy: .greaterThanOrEqual, toItem: contentView, attribute: .leading, multiplier: 1, constant: 12),
             NSLayoutConstraint(item: contactImageView, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1, constant: 0),
             
-            NSLayoutConstraint(item: contactImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: contactImageViewHeight),
+            contactImageViewHeightConstraint,
             NSLayoutConstraint(item: contactImageView, attribute: .height, relatedBy: .equal, toItem: contactImageView, attribute: .width, multiplier: 1, constant: 0)
             ])
         

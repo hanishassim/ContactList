@@ -89,19 +89,23 @@ class ContactFormVC: UIViewController {
         return tableView.cellForRow(at: indexPath) as? ContactTextInputTableCell
     }
     
+    fileprivate func presentRequireFieldErrorAlert() {
+        let alertController = UIAlertController(title: "Error", message: "First Name and Last Name is required.", preferredStyle: .alert)
+        alertController.view.tintColor = accentColor
+        let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     @objc func saveContactInfoAction() {
         guard let firstNameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? ContactTextInputTableCell, let lastNameCell = tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as? ContactTextInputTableCell, let firstName = firstNameCell.inputText, !firstName.isEmpty, let lastName = lastNameCell.inputText, !lastName.isEmpty else {
-            let alertController = UIAlertController(title: "Error", message: "First Name and Last Name is required.", preferredStyle: .alert)
-            alertController.view.tintColor = accentColor
-            let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
+            presentRequireFieldErrorAlert()
             
             return
         }
         
-        let emailCell = fetchInputCell(indexPath: IndexPath(row: 0, section: 2))
-        let phoneCell = fetchInputCell(indexPath: IndexPath(row: 1, section: 2))
+        let emailCell = fetchInputCell(indexPath: IndexPath(row: 1, section: 2))
+        let phoneCell = fetchInputCell(indexPath: IndexPath(row: 2, section: 2))
         
         let newContact = ContactInfo(id: contactInfoId, firstName: firstName, lastName: lastName, email: emailCell?.inputText, phone: phoneCell?.inputText)
         

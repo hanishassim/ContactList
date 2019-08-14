@@ -34,12 +34,8 @@ class ContactTextInputTableCell: TableBaseCell {
         return tf
     }()
     
-<<<<<<< HEAD
-    var inputTextFieldDelegate: UITextFieldDelegate? = nil {
-=======
     // To set delegate for cell's texfield
     weak var inputTextFieldDelegate: UITextFieldDelegate? {
->>>>>>> c086a69... Code refactoring; Removed unused function; Showing appropriate keyboard type for each textField; ContactInfoService can only be accessed via its singleton
         didSet {
             inputTextField.delegate = inputTextFieldDelegate
         }
@@ -55,11 +51,8 @@ class ContactTextInputTableCell: TableBaseCell {
             }
         }
     }
-    
-<<<<<<< HEAD
-=======
+
     // Set tag for textField - for keyboard next button to work
->>>>>>> c086a69... Code refactoring; Removed unused function; Showing appropriate keyboard type for each textField; ContactInfoService can only be accessed via its singleton
     var inputTextFieldTag: Int {
         get {
             return inputTextField.tag

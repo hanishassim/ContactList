@@ -38,18 +38,23 @@ class ContactInfoTableCell: TableBaseCell {
     }
     
     fileprivate let contactImageViewHeight: CGFloat = 49
+    fileprivate var contactImageViewHeightConstraint: NSLayoutConstraint!
     
     override func setupCell() {
         backgroundColor = .white
         
         contentView.addSubview(contactImageView)
         
+        contactImageViewHeightConstraint = NSLayoutConstraint(item: contactImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: contactImageViewHeight)
+        
+        contactImageViewHeightConstraint.priority = UILayoutPriority(999)
+        
         NSLayoutConstraint.activate([
             NSLayoutConstraint(item: contactImageView, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 8),
             NSLayoutConstraint(item: contactImageView, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leading, multiplier: 1, constant: 12),
             NSLayoutConstraint(item: contactImageView, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1, constant: 0),
             
-            NSLayoutConstraint(item: contactImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: contactImageViewHeight),
+            contactImageViewHeightConstraint,
             NSLayoutConstraint(item: contactImageView, attribute: .height, relatedBy: .equal, toItem: contactImageView, attribute: .width, multiplier: 1, constant: 0)
             ])
         

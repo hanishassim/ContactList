@@ -13,3 +13,5 @@ let accentColor = "#ff8c00".hexToUIColor()
 extension Notification.Name {
     static let DidSaveContactInfo = Notification.Name("DidSaveContactInfo")
 }
+
+typealias contactListCompletion = ([ContactInfo]) -> Void
