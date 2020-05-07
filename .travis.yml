@@ -10,5 +10,4 @@ branches:
   - master
 
 before_install:
-  - killAll Simulator
   - defaults write com.apple.iphonesimulator ConnectHardwareKeyboard -bool false
