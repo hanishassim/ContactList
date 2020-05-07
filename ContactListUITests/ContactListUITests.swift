@@ -55,6 +55,8 @@ class ContactListUITests: XCTestCase {
         tablesCells.containing(.staticText, identifier:"First Name").children(matching: .textField).element.tap()
         XCTAssert(app.keyboards.count > 0, "The keyboard is not shown")
         
+        guard app.keyboards.count > 0 else { return }
+        
         let nextButton = app/*@START_MENU_TOKEN@*/.buttons["Next:"]/*[[".keyboards",".buttons[\"Next\"]",".buttons[\"Next:\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
         
         nextButton.tap()
