@@ -15,7 +15,7 @@
 
 import xml.etree.ElementTree as ET
 
-SCHEME_FILE = "ContactList/ContactList.xcworkspace/xcshareddata/xcschemes/ContactList.xcscheme"
+SCHEME_FILE = "ContactList/ContactList.xcodeproj/xcshareddata/xcschemes/ContactList.xcscheme"
 UI_REF_XPATH = ".//BuildableReference[@BlueprintName='ContactListUITests']/.."
 
 # Parse the Xcode scheme.
