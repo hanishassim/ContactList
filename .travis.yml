@@ -9,5 +9,6 @@ branches:
   only: # safelist
   - master
 
-before_install:
-  - defaults write com.apple.iphonesimulator ConnectHardwareKeyboard -bool false
+script:
+# Skip the UI tests until Travis has support for them.
+  - ContactListUITests/travis-skip.py
