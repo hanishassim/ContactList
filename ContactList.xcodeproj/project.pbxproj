@@ -286,6 +286,7 @@
 				07E3F5ED23040C4000384E01 /* Sources */,
 				07E3F5EE23040C4000384E01 /* Frameworks */,
 				07E3F5EF23040C4000384E01 /* Resources */,
+				CB9EC47624647261002B8E71 /* Disable Hardware Keyboard */,
 			);
 			buildRules = (
 			);
@@ -413,6 +414,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ContactList/Pods-ContactList-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		CB9EC47624647261002B8E71 /* Disable Hardware Keyboard */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Disable Hardware Keyboard";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "external_kb_connected=false\n\nosascript -e 'quit app \"Simulator\"'\n\nSIMUS_KEYBOARD=$(/usr/libexec/PlistBuddy -c \"Print :DevicePreferences\" ~/Library/Preferences/com.apple.iphonesimulator.plist | perl -lne 'print $1 if /^    (\\S*) =/')\n\necho \"$SIMUS_KEYBOARD\" | while read -r a; do /usr/libexec/PlistBuddy -c \"Set :DevicePreferences:$a:ConnectHardwareKeyboard $external_kb_connected\" ~/Library/Preferences/com.apple.iphonesimulator.plist || /usr/libexec/PlistBuddy -c  \"Add :DevicePreferences:$a:ConnectHardwareKeyboard bool $external_kb_connected\" ~/Library/Preferences/com.apple.iphonesimulator.plist; done\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
